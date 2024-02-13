@@ -1,0 +1,10 @@
+<!-- linear_regression_form.html -->
+<form method="post" action="{{ url_for('linregression_route') }}">
+    <label for="dataset">Choose a dataset:</label>
+    <select name="dataset" id="dataset">
+        <option value="iris">Iris</option>
+        <option value="digits">Digits</option>
+        <option value="wine">Wine</option>
+    </select>
+    <input type="submit" value="Run Linear Regression">
+</form>

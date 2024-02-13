@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head content -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to My Math Algorithms Visualization Tool</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('linregression_route') }}">Linear Regression</a></li>
+            <li><a href="{{ url_for('ridge_route') }}">Ridge Regression</a></li>
+            <li><a href="{{ url_for('lasso_route') }}">Lasso Regression</a></li>
+            <li><a href="{{ url_for('pca_route') }}">PCA</a></li>
+            <li><a href="{{ url_for('lda_route') }}">LDA</a></li>
+            <li><a href="{{ url_for('kmeans_route') }}">KMeans Clustering</a></li>
+            <li><a href="{{ url_for('montecarlo_route') }}">Monte Carlo Simulation</a></li>
+            <!-- Add more links as needed -->
+        </ul>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head content -->
+</head>
+<body>
+    <h1>LDA Results</h1>
+    <!-- Display results here -->
+    <div id="LDA">
+        <!-- Use Jinja2 to inject results -->
+        {{ plot_html|safe }}
+    </div>
+    <a href="{{ url_for('lda_route') }}">Back to LDA Form</a>
+</body>
+</html>
+

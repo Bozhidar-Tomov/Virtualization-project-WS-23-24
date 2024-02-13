@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head content -->
+</head>
+<body>
+    <h1>PCA Results</h1>
+    <!-- Display results here -->
+    <div id="PCA">
+        <!-- Use Jinja2 to inject results -->
+        {{ plot_html|safe }}
+    </div>
+    <a href="{{ url_for('pca_route') }}">Back to PCA Form</a>
+</body>
+</html>

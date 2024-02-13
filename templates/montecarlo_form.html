@@ -1,0 +1,13 @@
+<!-- monte_carlo_form.html -->
+<form method="post" action="{{ url_for('montecarlo_route') }}">
+    <label for="dataset">Choose a dataset:</label>
+    <select name="dataset" id="dataset">
+        <option value="iris">Iris</option>
+        <option value="digits">Digits</option>
+        <option value="wine">Wine</option>
+    </select>
+    <label for="num_simulations">Number of Simulations:</label>
+    <input type="number" id="num_simulations" name="num_simulations" min="1" value="100">
+    <input type="submit" value="Run Monte Carlo Simulation">
+</form>
+

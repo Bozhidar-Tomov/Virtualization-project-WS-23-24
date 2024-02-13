@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head content -->
+</head>
+<body>
+    <h1>Linear Regression Results</h1>
+    <!-- Display results here -->
+    <div id="Linear">
+        <!-- Use Jinja2 to inject results -->
+        {{ plot_html|safe }}
+    </div>
+    <a href="{{ url_for('linregression_route') }}">Back to Linear Form</a>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head content -->
+</head>
+<body>
+    <h1>Ridge Regression Results</h1>
+    <!-- Display results here -->
+    <div id="Ridge">
+        <!-- Use Jinja2 to inject results -->
+        {{ plot_html|safe }}
+    </div>
+    <a href="{{ url_for('ridge_route') }}">Back to Ridge Form</a>
+</body>
+</html>
