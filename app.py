@@ -175,14 +175,5 @@ def montecarlo_route():
 
     return render_template('montecarlo_form.html')
 
-
-
-
-
 if __name__ == '__main__':
     app.run(debug=True)
-
-@app.route('/ask_ai_form')
-def show_ask_ai_form():
-    return render_template('askai.html')
-
