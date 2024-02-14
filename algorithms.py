@@ -51,8 +51,6 @@ def plot_regression(X, Y, predictions, title, xaxis_title, yaxis_title):
     fig = go.Figure(data=[scatter, line], layout=layout)
     fig.show()
 
-
-
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 import pandas as pd
 import plotly.express as px
@@ -134,10 +132,20 @@ def plot_kmeans(df, title="K-Means Clustering", color_sequence=None):
 
 
 
-
-
-
-
-
-
-
+class Interpolation:
+    def __init__(self, nodes, values):
+        self.nodes = nodes
+        self.values = values
+        
+    def base(self, i, x):
+        product = 1
+        for j in range(len(self.nodes)):
+            if i == j: continue
+            product *= (x - self.nodes[j]) / (self.nodes[i] - self.nodes[j])
+        return product
+    
+    def lagrange_poly(self, x):
+        result = 0
+        for i in range(len(self.nodes)):
+            result += self.values[i] * self.base(i, x)
+        return result

@@ -1,14 +1,45 @@
 from flask import Flask, render_template, request
+from flask_cors import CORS
+
 from algorithms import monte_carlo_simulation, plot_monte_carlo, fit_regression, plot_regression
 from algorithms import perform_lda, plot_lda, perform_pca, plot_pca, elbow_plot, kmeans_clustering, plot_kmeans
 from datasets import load_dataset, preprocess_digits, preprocess_iris, preprocess_wine
 
+PORT = 5000
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+import numpy as np
+from algorithms import Interpolation
+
+@app.route('/interpolation_route', methods=['GET', 'POST'])
+def interpolation_route():
+    if request.method == 'POST':
+        data = request.get_json()
+        nodes = np.array(data['nodes_x'])
+        values = np.array(data['values_y'])
+        
+        interpolator = Interpolation(nodes, values)
+        
+        x_axis = np.linspace(min(nodes), max(nodes), num=1000)
+        y_axis = [interpolator.lagrange_poly(x) for x in x_axis]
+        
+        
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=x_axis, y=y_axis, mode='lines', name='Interpolation'))
+        fig.add_trace(go.Scatter(x=nodes, y=values, mode='markers', name='Points'))
+        fig.update_layout(title='Lagrange Interpolation Polynomial')
+
+        fig.show()
+        
+        return render_template('interpolation_result.html', plot=fig)
+    else:
+        return render_template('interpolation_form.html')
+
 
 
 from sklearn.linear_model import LinearRegression 
@@ -176,4 +207,4 @@ def montecarlo_route():
     return render_template('montecarlo_form.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=PORT, debug=True)

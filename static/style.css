@@ -4,7 +4,7 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: #2e2c2f;
 }
 
 nav ul {
@@ -25,5 +25,5 @@ nav a {
 }
 
 nav a:hover {
-    color: #00f;
+    color: rgb(95, 209, 123);
 }
