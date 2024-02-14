@@ -1,25 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- Head content -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="../static/styles.css" />
+  </head>
+  <body>
     <h1>Welcome to Math Algorithms Visualization Tool</h1>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('linregression_route') }}">Linear Regression</a></li>
-            <li><a href="{{ url_for('ridge_route') }}">Ridge Regression</a></li>
-            <li><a href="{{ url_for('lasso_route') }}">Lasso Regression</a></li>
-            <li><a href="{{ url_for('pca_route') }}">PCA</a></li>
-            <li><a href="{{ url_for('lda_route') }}">LDA</a></li>
-            <li><a href="{{ url_for('kmeans_route') }}">KMeans Clustering</a></li>
-            <li><a href="{{ url_for('montecarlo_route') }}">Monte Carlo Simulation</a></li>
-            <li><a href="{{ url_for('interpolation_route') }}">Interpolation route</a></li>
-            <!-- Add more links as needed -->
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f0f0f0;
+        padding: 20px;
+        border: 2px solid #333;
+        border-radius: 10px;
+      "
+    >
+      <nav>
+        <ul style="display: flex; list-style: none; margin: 0; padding: 0">
+          <li style="margin: 10px; background-color: #2a6f9d; border-radius: 5px">
+            <a
+              href="{{ url_for('linregression_route') }}"
+              style="
+                color: #fff;
+                text-decoration: none;
+                font-family: 'Lato', sans-serif;
+                font-size: 18px;
+                text-transform: uppercase;
+                padding: 10px;
+              "
+              >Linear Regression</a
+            >
+          </li>
+          <li style="margin: 10px; background-color: #2a6f9d; border-radius: 5px">
+            <a
+              href="{{ url_for('ridge_route') }}"
+              style="
+                color: #fff;
+                text-decoration: none;
+                font-family: 'Lato', sans-serif;
+                font-size: 18px;
+                text-transform: uppercase;
+                padding: 10px;
+              "
+              >Ridge Regression</a
+            >
+          </li>
+          <li style="margin: 10px; background-color: #2a6f9d; border-radius: 5px">
+            <a
+              href="{{ url_for('lasso_route') }}"
+              style="
+                color: #fff;
+                text-decoration: none;
+                font-family: 'Lato', sans-serif;
+                font-size: 18px;
+                text-transform: uppercase;
+                padding: 10px;
+              "
+              >Lasso Regression</a
+            >
+          </li>
+          <li style="margin: 10px; background-color: #2a6f9d; border-radius: 5px">
+            <a
+              href="{{ url_for('pca_route') }}"
+              style="
+                color: #fff;
+                text-decoration: none;
+                font-family: 'Lato', sans-serif;
+                font-size: 18px;
+                text-transform: uppercase;
+                padding: 10px;
+              "
+              >PCA</a
+            >
+          </li>
+          <li style="margin: 10px; background-color: #2a6f9d; border-radius: 5px">
+            <a
+              href="{{ url_for('lda_route') }}"
+              style="
+                color: #fff;
+                text-decoration: none;
+                font-family: 'Lato', sans-serif;
+                font-size: 18px;
+                text-transform: uppercase;
+                padding: 10px;
+              "
+              >LDA</a
+            >
+          </li>
+          <li style="margin: 10px; background-color: #2a6f9d; border-radius: 5px">
+            <a
+              href="{{ url_for('kmeans_route') }}"
+              style="
+                color: #fff;
+                text-decoration: none;
+                font-family: 'Lato', sans-serif;
+                font-size: 18px;
+                text-transform: uppercase;
+                padding: 10px;
+              "
+              >KMeans Clustering</a
+            >
+          </li>
+          <li style="margin: 10px; background-color: #2a6f9d; border-radius: 5px">
+            <a
+              href="{{ url_for('montecarlo_route') }}"
+              style="
+                color: #fff;
+                text-decoration: none;
+                font-family: 'Lato', sans-serif;
+                font-size: 18px;
+                text-transform: uppercase;
+                padding: 10px;
+              "
+              >Monte Carlo Simulation</a
+            >
+          </li>
+          <li style="margin: 10px; background-color: #2a6f9d; border-radius: 5px">
+            <a
+              href="{{ url_for('interpolation_route') }}"
+              style="
+                color: #fff;
+                text-decoration: none;
+                font-family: 'Lato', sans-serif;
+                font-size: 18px;
+                text-transform: uppercase;
+                padding: 10px;
+              "
+              >Interpolation route</a
+            >
+          </li>
+          <!-- Add more links as needed -->
         </ul>
-    </nav>
-</body>
+      </nav>
+    </div>
+  </body>
 </html>

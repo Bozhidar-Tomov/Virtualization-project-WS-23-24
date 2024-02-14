@@ -207,4 +207,4 @@ def montecarlo_route():
     return render_template('montecarlo_form.html')
 
 if __name__ == '__main__':
-    app.run(port=PORT, debug=True)
+    app.run(host='0.0.0.0', port=PORT, debug=True)
