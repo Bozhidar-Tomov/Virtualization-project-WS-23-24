@@ -16,7 +16,7 @@ def index():
 import numpy as np
 from algorithms import Interpolation
 
-@app.route('/interpolation_route', methods=['GET', 'POST'])
+@app.route('/interpolation', methods=['GET', 'POST'])
 def interpolation_route():
     if request.method == 'POST':
         data = request.get_json()
@@ -111,8 +111,6 @@ def lasso_route():
 
 
 
-
-
 from sklearn.decomposition import PCA
 import plotly.express as px
 import matplotlib.pyplot as plt
@@ -140,7 +138,6 @@ def pca_route():
 
 
 
-    
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.cluster import KMeans
 
@@ -205,6 +202,26 @@ def montecarlo_route():
         return render_template('montecarlo_results.html', accuracies=accuracies, plot_html=plot_html)
 
     return render_template('montecarlo_form.html')
+
+
+
+import json
+import requests
+
+@app.route('/matrix', methods=['GET', 'POST'])
+def matrix_route():
+    result = None
+    if request.method == 'POST':
+        operation = request.form.get('operation')
+        matrix1 = json.loads(request.form.get('matrix1'))
+        matrix2 = json.loads(request.form.get('matrix2'))
+        data = {'matrix1': matrix1, 'matrix2': matrix2}
+        response = requests.post(f'http://localhost:8000/matrix/{operation}', json=data)
+        if response.status_code == 200:
+            result = response.json()
+        else:
+            result = {'error': response.text}
+    return render_template('matrix_results.html', result=result)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=PORT, debug=True)

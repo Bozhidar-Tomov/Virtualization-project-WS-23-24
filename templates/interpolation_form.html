@@ -1,76 +1,73 @@
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet" href="../static/styles.css">
-</head>
-<body>
+  <head>
+    <link rel="stylesheet" href="../static/styles.css" />
+  </head>
+  <body>
+    <h2>Enter Numbers</h2>
 
-<h2>Enter Numbers</h2>
+    <label for="numInputX">Nodes (X):</label>
+    <input type="number" id="numInputX" />
+    <button onclick="addNumber('X')">Add Number</button>
+    <p id="arrayOutputX"></p>
 
-<label for="numInputX">Nodes (X):</label>
-<input type="number" id="numInputX">
-<button onclick="addNumber('X')">Add Number</button>
-<p id="arrayOutputX"></p>
+    <label for="numInputY">Values (Y):</label>
+    <input type="number" id="numInputY" />
+    <button onclick="addNumber('Y')">Add Number</button>
+    <p id="arrayOutputY"></p>
 
-<label for="numInputY">Values (Y):</label>
-<input type="number" id="numInputY">
-<button onclick="addNumber('Y')">Add Number</button>
-<p id="arrayOutputY"></p>
+    <button onclick="sendDataToServer()">Send Data</button>
 
-<button onclick="sendDataToServer()">Send Data</button>
+    <script>
+      let numArrayX = [];
+      let numArrayY = [];
 
-<script>
-let numArrayX = [];
-let numArrayY = [];
+      function addNumber(arrayType) {
+        let numInput = document.getElementById("numInput" + arrayType);
+        let num = numInput.value;
+        if (arrayType === "X") {
+          numArrayX.push(Number(num));
+          document.getElementById("arrayOutputX").innerHTML = "Nodes (X): " + numArrayX.join(", ");
+        } else {
+          numArrayY.push(Number(num));
+          document.getElementById("arrayOutputY").innerHTML = "Values (Y): " + numArrayY.join(", ");
+        }
+        numInput.value = ""; // clear the input field
+        numInput.focus(); // set focus back to the input field
+      }
 
-function addNumber(arrayType) {
-  let numInput = document.getElementById("numInput" + arrayType);
-  let num = numInput.value;
-  if (arrayType === 'X') {
-    numArrayX.push(Number(num));
-    document.getElementById("arrayOutputX").innerHTML = "Nodes (X): " + numArrayX.join(", ");
-  } else {
-    numArrayY.push(Number(num));
-    document.getElementById("arrayOutputY").innerHTML = "Values (Y): " + numArrayY.join(", ");
-  }
-  numInput.value = ""; // clear the input field
-  numInput.focus(); // set focus back to the input field
-}
+      function sendDataToServer() {
+        let data = {
+          nodes_x: numArrayX,
+          values_y: numArrayY,
+        };
 
-function sendDataToServer() {
-    let data = {
-        nodes_x: numArrayX,
-        values_y: numArrayY
-    };
+        fetch("http://127.0.0.1:5000/interpolation", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.text())
+          .then((html) => {
+            document.documentElement.innerHTML = html;
+            document.getElementById("Interpolation").innerHTML = html;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
 
-    fetch('http://127.0.0.1:5000/interpolation_route', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.text())
-    .then(html => {
-        document.documentElement.innerHTML = html;
-        document.getElementById("Interpolation").innerHTML = html;
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
-
-
-// Add event listener for 'Enter' key
-["X", "Y"].forEach(function(arrayType) {
-  document.getElementById("numInput" + arrayType).addEventListener("keyup", function(event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      addNumber(arrayType);
-    }
-  });
-});
-</script>
-
-</body>
+      // Add event listener for 'Enter' key
+      ["X", "Y"].forEach(function (arrayType) {
+        document.getElementById("numInput" + arrayType).addEventListener("keyup", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            addNumber(arrayType);
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

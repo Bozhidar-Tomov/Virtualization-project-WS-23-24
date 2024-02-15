@@ -4,7 +4,7 @@
     <!-- Head content -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" /> -->
     <link rel="stylesheet" href="../static/styles.css" />
   </head>
   <body>
@@ -132,6 +132,20 @@
                 padding: 10px;
               "
               >Interpolation route</a
+            >
+          </li>
+          <li style="margin: 10px; background-color: #2a6f9d; border-radius: 5px">
+            <a
+              href="{{ url_for('matrix_route') }}"
+              style="
+                color: #fff;
+                text-decoration: none;
+                font-family: 'Lato', sans-serif;
+                font-size: 18px;
+                text-transform: uppercase;
+                padding: 10px;
+              "
+              >Matrix operations</a
             >
           </li>
           <!-- Add more links as needed -->
