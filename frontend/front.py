@@ -36,11 +36,10 @@ def linregression_route():
         dataset_choice = request.form["dataset"]
 
         response = requests.post(
-            "http://localhost:8001/linregression", data={"dataset": dataset_choice}
+            "http://math_operations_c:8001/linregression",
+            data={"dataset": dataset_choice},
         )
         data = response.json()
-
-        print(data)
 
         # Convert lists back to numpy arrays for plot_regression
         X = np.array(data["X"])
@@ -74,7 +73,9 @@ def interpolation_route():
     if request.method == "POST":
         data = request.get_json()
 
-        response = requests.post("http://localhost:8001/interpolation", json=data)
+        response = requests.post(
+            "http://math_operations_c:8001/interpolation", json=data
+        )
         result = response.json()
 
         fig = go.Figure()
@@ -107,12 +108,12 @@ def ridge_route():
         dataset_choice = request.form["dataset"]
         alpha = request.form.get("alpha", type=float, default=1.0)
         response = requests.post(
-            "http://localhost:8001/ridge",
+            "http://math_operations_c:8001/ridge",
             data={"dataset": dataset_choice, "alpha": alpha},
         )
         data = response.json()
-        print(data)  # Add this line to print the data
-        X = np.array(data["X"]).flatten()  # Convert list to numpy array and flatten
+
+        X = np.array(data["X"]).flatten()
         plot_html = plot_regression(
             X,
             data["y"],
@@ -139,7 +140,7 @@ def lasso_route():
         dataset_choice = request.form["dataset"]
         alpha = request.form.get("alpha", type=float, default=1.0)
         response = requests.post(
-            "http://localhost:8001/lasso",
+            "http://math_operations_c:8001/lasso",
             data={"dataset": dataset_choice, "alpha": alpha},
         )
         data = response.json()
@@ -170,7 +171,7 @@ def pca_route():
         n_components = request.form.get("n_components", type=int, default=2)
 
         response = requests.post(
-            "http://localhost:8001/pca",
+            "http://math_operations_c:8001/pca",
             data={"dataset": dataset_choice, "n_components": n_components},
         )
         pca_df = response.json()
@@ -195,7 +196,7 @@ def lda_route():
         n_components = request.form.get("n_components", type=int, default=2)
 
         response = requests.post(
-            "http://localhost:8001/lda",
+            "http://math_operations_c:8001/lda",
             data={"dataset": dataset_choice, "n_components": n_components},
         )
         lda_json = response.json()
@@ -218,14 +219,11 @@ def kmeans_route():
         n_clusters = request.form.get("n_clusters", type=int, default=3)
 
         response = requests.post(
-            "http://localhost:8001/kmeans",
+            "http://math_operations_c:8001/kmeans",
             data={"dataset": dataset_choice, "n_clusters": n_clusters},
         )
         kmeans_json = response.json()
         kmeans_df = pd.DataFrame(kmeans_json)
-
-        print("Status Code:", response.status_code)
-        print("Response Text:", response.text)
 
         plot_html = plot_kmeans(kmeans_df, title="KMeans Clustering Result")
 
@@ -244,7 +242,7 @@ def montecarlo_route():
         n_simulations = request.form.get("n_simulations", type=int, default=100)
 
         response = requests.post(
-            "http://localhost:8001/montecarlo",
+            "http://math_operations_c:8001/montecarlo",
             data={"dataset": dataset_choice, "n_simulations": n_simulations},
         )
         data = response.json()
@@ -272,7 +270,9 @@ def matrix_route():
         matrix1 = json.loads(request.form.get("matrix1"))
         matrix2 = json.loads(request.form.get("matrix2"))
         data = {"matrix1": matrix1, "matrix2": matrix2}
-        response = requests.post(f"http://localhost:8000/matrix/{operation}", json=data)
+        response = requests.post(
+            f"http://matrix_operations_c:8000/matrix/{operation}", json=data
+        )
         if response.status_code == 200:
             result = response.json()
         else:

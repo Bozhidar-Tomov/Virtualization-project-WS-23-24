@@ -1,0 +1,74 @@
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File /urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               
+  File /urllib3/connectionpool.py", line 496, in _make_request
+    conn.request(
+  File /urllib3/connection.py", line 400, in request
+    self.endheaders()
+  File "/usr/local/lib/python3.12/http/client.py", line 1326, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.12/http/client.py", line 1085, in _send_output
+    self.send(msg)
+  File "/usr/local/lib/python3.12/http/client.py", line 1029, in send
+    self.connect()
+  File /urllib3/connection.py", line 238, in connect
+    self.sock = self._new_conn()
+                d  File /urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f586a2098b0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File /requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+           d  File /urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              
+  File /urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8001): Max retries exceeded with url: /linregression (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f586a2098b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File /flask/app.py", line 1488, in __call__
+    return self.wsgi_app(environ, start_response)
+           d  File /flask/app.py", line 1466, in wsgi_app
+    response = self.handle_exception(e)
+               d  File /flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                d  File /flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+               
+  File /flask/app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         d  File /flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                d  File /flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+         d  File /flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           
+  File "/app/front.py", line 38, in linregression_route
+    response = requests.post(
+               d  File /requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           
+  File /requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           
+  File /requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           
+  File /requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        
+  File /requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8001): Max retries exceeded with url: /linregression (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f586a2098b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
